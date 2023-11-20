@@ -57,6 +57,11 @@ if (program.compiler) {
   registerCompiler(program.compiler)
 }
 
+if (!program.store) {
+  log.error('error', 'Refusing to run migration when --store is not specified.')
+  process.exit(1)
+}
+
 // Setup store
 if (program.store[0] === '.') program.store = path.join(process.cwd(), program.store)
 
